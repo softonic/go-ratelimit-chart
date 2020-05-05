@@ -1,8 +1,10 @@
 # Helm chart for Global rate limit envoy service
 
-[![Latest Version](https://img.shields.io/github/release/envoyproxy/ratelimit.svg)](https://github.com/envoyproxy/ratelimit/releases)
+[![Latest Version](https://img.shields.io/github/release/softonic/go-ratelimit-chart.svg)](https://github.com/softonic/go-ratelimit-chart/releases)
 [![Software License](https://img.shields.io/badge/license-Apache%202.0-blue.svg)](LICENSE)
-[![Average time to resolve an issue](http://isitmaintained.com/badge/resolution/softonic/kube-gcp-disks-roomba.svg)](http://isitmaintained.com/project/envoyproxy/ratelimit "Average time to resolve an issue")
+[![Average time to resolve an issue](http://isitmaintained.com/badge/resolution/softonic/go-ratelimit-chart.svg)](http://isitmaintained.com/project/softonic/go-ratelimit-chart "Average time to resolve an issue")
+![GitHub issues](https://img.shields.io/github/issues-raw/softonic/go-ratelimit-chart)
+
 
 # Overview
 
