@@ -4,7 +4,7 @@ env:
   - HELM_VERSION="v3.1.1"
   - CHART="go-ratelimit"
 install:
-- wget "https://get.helm.sh/helm-${HELM_VERSION}-linux-amd64.tar.gz"
+- wget "https://get.helm.sh/helm-${HELM_VERSION}-linux-amd64.tar.gz" -O /tmp/helm.tar.gz
 - tar zvxf /tmp/helm.tar.gz -C /tmp
 - mv /tmp/linux-amd64/helm /tmp/helm
 - chmod u+x /tmp/helm
