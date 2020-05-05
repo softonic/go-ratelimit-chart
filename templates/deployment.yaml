@@ -38,8 +38,6 @@ spec:
             value: ratelimit
           - name: USE_STATSD
             value: "false"
-          - name: REDIS_AUTH
-            value: "LGWuol7DxF"
           name: {{ .Chart.Name }}
           image: registry.softonic.io/ratelimit:1.0.1
           imagePullPolicy: Always
