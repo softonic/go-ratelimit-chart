@@ -1,0 +1,98 @@
+# Default values for ..
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+replicaCount: 1
+
+image:
+  repository: envoyproxy/ratelimit
+  pullPolicy: IfNotPresent
+  tag: v1.4.0
+
+# imagePullSecrets: []
+# nameOverride: ""
+# fullnameOverride: ""
+
+podLabels: {}
+podAnnotations: {}
+
+serviceAccount:
+  # Specifies whether a service account should be created
+  create: true
+  # Annotations to add to the service account
+  annotations: {}
+  # The name of the service account to use.
+  # If not set and create is true, a name is generated using the fullname template
+  name:
+
+podSecurityContext: {}
+  # fsGroup: 2000
+
+securityContext: {}
+  # capabilities:
+  #   drop:
+  #   - ALL
+  # readOnlyRootFilesystem: true
+  # runAsNonRoot: true
+  # runAsUser: 1000
+
+resources: {}
+
+nodeSelector: {}
+
+tolerations: []
+
+affinity: {}
+
+priorityClassName: ""
+
+podDisruptionBudget: {}
+
+redisUrl: "redis"
+redisSocketType: "tcp"
+redisPort: 6379
+
+debugPort: 6070
+grpcPort: 8081
+httpPort: 8080
+
+config: |-
+  # Start with empty config
+
+redis:
+  enabled: true
+  serviceAccount:
+    create: false
+  fullnameOverride: "redis"
+  resources:
+    requests:
+      memory: 4G
+      cpu: 100m
+  replicaCount: 3
+  redisPort: 6379
+  affinity: {}
+  persistence:
+    enabled: false
+  updateStrategy:
+    type: OnDelete
+  twemproxy:
+    enabled: true
+    replicaCount: 3
+    config:
+      hash: fnv1a_64
+      distribution: ketama
+      preconnect: true
+      timeout: 200
+    configmap: |-
+      bind 0.0.0.0
+      port 6379
+      tcp-backlog 511
+      timeout 0
+      tcp-keepalive 300
+      daemonize no
+      supervised no
+      pidfile /var/run/redis_6379.pid
+      save ''
+      appendonly no
+      appendfsync no
+      maxmemory 4gb

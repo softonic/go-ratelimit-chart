@@ -1,0 +1,23 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "go-ratelimit.fullname" . }}
+  labels:
+    {{- include "go-ratelimit.labels" . | nindent 4 }}
+spec:
+  type: ClusterIP
+  ports:
+    - port: {{ .Values.debugPort }}
+      targetPort: http-debug
+      protocol: TCP
+      name: http-debug
+    - port: {{ .Values.grpcPort }}
+      targetPort: grpc-server
+      protocol: TCP
+      name: grpc-server
+    - port: {{ .Values.httpPort }}
+      targetPort: http-server
+      protocol: TCP
+      name: http-server
+  selector:
+    {{- include "go-ratelimit.selectorLabels" . | nindent 4 }}

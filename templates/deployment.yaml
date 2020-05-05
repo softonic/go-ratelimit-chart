@@ -1,0 +1,75 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "go-ratelimit.fullname" . }}
+  labels:
+    {{- include "go-ratelimit.labels" . | nindent 4 }}
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      {{- include "go-ratelimit.selectorLabels" . | nindent 6 }}
+  template:
+    metadata:
+      labels:
+        {{- include "go-ratelimit.selectorLabels" . | nindent 8 }}
+{{- if .Values.podLabels }}
+{{ toYaml .Values.podLabels | indent 8 }}
+{{- end }}
+    spec:
+    {{- with .Values.imagePullSecrets }}
+      imagePullSecrets:
+        {{- toYaml . | nindent 8 }}
+    {{- end }}
+      serviceAccountName: {{ include "go-ratelimit.serviceAccountName" . }}
+      securityContext:
+        {{- toYaml .Values.podSecurityContext | nindent 8 }}
+      containers:
+        - env:
+          - name: LOG_LEVEL
+            value: debug
+{{- if .Values.redis.enabled }}
+          - name: REDIS_SOCKET_TYPE
+            value: {{ .Values.redisSocketType }}
+          - name: REDIS_URL
+            value: {{ .Values.redisUrl }}:{{ .Values.redisPort }}
+{{- end }}
+          - name: RUNTIME_ROOT
+            value: /data
+          - name: RUNTIME_SUBDIRECTORY
+            value: ratelimit
+          - name: USE_STATSD
+            value: "false"
+          name: {{ .Chart.Name }}
+          image: registry.softonic.io/ratelimit:1.0.1
+          imagePullPolicy: Always
+          ports:
+            - name: http-debug 
+              containerPort: {{ .Values.debugPort }}
+            - name: grpc-server
+              containerPort: {{ .Values.grpcPort }}
+            - name: http-server
+              containerPort: {{ .Values.httpPort }}
+          volumeMounts:
+          - mountPath: /data/ratelimit/config/config.yaml
+            name: ratelimitconfig
+            subPath: config.yaml
+          resources:
+            {{- toYaml .Values.resources | nindent 12 }}
+      {{- with .Values.nodeSelector }}
+      nodeSelector:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+    {{- with .Values.affinity }}
+      affinity:
+        {{- toYaml . | nindent 8 }}
+    {{- end }}
+    {{- with .Values.tolerations }}
+      tolerations:
+        {{- toYaml . | nindent 8 }}
+    {{- end }}
+      volumes:
+      - configMap:
+          defaultMode: 420
+          name: {{ include "go-ratelimit.fullname" . }}
+        name: ratelimitconfig

@@ -1,0 +1,34 @@
+language: minimal
+env:
+  global:
+  - HELM_VERSION="v3.1.1"
+  - CHART="go-ratelimit"
+install:
+- wget "https://get.helm.sh/helm-${HELM_VERSION}-linux-amd64.tar.gz" -O /tmp/helm.tar.gz
+- tar zvxf /tmp/helm.tar.gz -C /tmp
+- mv /tmp/linux-amd64/helm /tmp/helm
+- chmod u+x /tmp/helm
+- "mkdir /var/tmp/${CHART}"
+- "cp -R ./ /var/tmp/${CHART}"
+- "/tmp/helm repo add softonic $URL_CHARTMUSEUM"
+- "/tmp/helm repo add softonic-public $PUBLIC_CHARTS_REPOSITORY"
+- "/tmp/helm plugin install https://github.com/chartmuseum/helm-push"
+- "/tmp/helm repo list"
+- "/tmp/helm lint /var/tmp/${CHART}"
+deploy:
+  provider: script
+  script:
+  - "/tmp/helm push /var/tmp/${CHART} softonic-public --force"
+  on:
+    branch: master
+notifications:
+  email: false
+  slack:
+    rooms:
+      - secure: vAldZ0K6pfl2niH/As7RCG/zywX3e/O2YuDmoHE9SYoRzSD8ywKAY+o2RAfC8X0v1gAidcqGbftADhLLKGUVnzyJJKqMXCeP7jNFxpEMXdEslnNoUVLoc1+sFcWdvzFVqPyqnAgla/wR3XDUUJTBkQewpoONU0rua129PFoM6hEkQkzvFaCFDEk6lyeHhIoCJCfu4YpuPZmKndSse1IB40ttlJ5jVgGC1rqOMqohQEaJGbd4bPP5RjT+yk5zzt5wtEh8lpx5HzEAWA8k2VlVp8ny0lrNRcitEqzRWMtE/cWtINhhQr8jgVQwsQBOS0vkCnBuQWe5zLbrp2S3G44xDID+KkiViEyyh7wxQwOjw6aQNZDZ6U7U8+cPY4psjNgUNMv66YO2Mkyct0Wqc5kL42g5KqtDOU18cyEk5fTTs+yuTdD0mGOa1Dg9hE4lTtMYwdi/CBlN4Nxwnq5+Bjc+/xm/KEkYUnI7YQKLZeJOsM6qfNpIOgFoTB+iU17ZnkZ/sNKT12oKyTXR6qLO/zLZP/2tEsf2Lf+hbURy/IQhhJrajTynKCZjk8Oy88I72//mKhrJPtFso3UQ5wsiNcjZAc3QazbxS1B0vPpo6odbYW0+vBqXmE4lyP/bWkVMwN3qGUK8+gpACAGZuZfLL/yFmTlM2fspSSxdFiMb/CnXev4=
+    on_success: always
+    on_failure: always
+    template:
+      - "Repo %{repository_slug} %{result} build (<%{build_url}|#%{build_number}>) for commit (<%{compare_url}|%{commit}>) on branch %{branch}."
+      - "Execution time: %{duration}"
+      - "Message: %{message}"
