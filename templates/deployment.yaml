@@ -28,10 +28,12 @@ spec:
         - env:
           - name: LOG_LEVEL
             value: debug
+{{- if .Values.redis.enabled }}
           - name: REDIS_SOCKET_TYPE
-            value: tcp
+            value: {{ .Values.redisSocketType }}
           - name: REDIS_URL
-            value: ratelimit-redis-master:6379
+            value: {{ .Values.redisUrl }}:{{ .Values.redisPort }}
+{{- end }}
           - name: RUNTIME_ROOT
             value: /data
           - name: RUNTIME_SUBDIRECTORY

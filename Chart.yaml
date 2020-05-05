@@ -5,6 +5,8 @@ type: application
 version: 0.1.0
 appVersion: 1.4.0
 dependencies:
-  - name: redis
-    version: 6.4.2
-    repository: https://kubernetes-charts.storage.googleapis.com
+- name: "redis-sharded"
+  version: 0.1.0
+  alias: "redis"
+  repository: "@softonic-public"
+  condition: redis.enabled
