@@ -61,38 +61,11 @@ config: |-
 
 redis:
   enabled: true
-  serviceAccount:
-    create: false
   fullnameOverride: "redis"
-  resources:
-    requests:
-      memory: 4G
-      cpu: 100m
-  replicaCount: 3
   redisPort: 6379
-  affinity: {}
   persistence:
     enabled: false
   updateStrategy:
     type: OnDelete
   twemproxy:
-    enabled: true
-    replicaCount: 3
-    config:
-      hash: fnv1a_64
-      distribution: ketama
-      preconnect: true
-      timeout: 200
-    configmap: |-
-      bind 0.0.0.0
-      port 6379
-      tcp-backlog 511
-      timeout 0
-      tcp-keepalive 300
-      daemonize no
-      supervised no
-      pidfile /var/run/redis_6379.pid
-      save ''
-      appendonly no
-      appendfsync no
-      maxmemory 4gb
+    enabled: false
