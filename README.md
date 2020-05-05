@@ -1,4 +1,10 @@
-# Go/grpc Helm chart for Global rate limit envoy service
+# Helm chart for Global rate limit envoy service
+
+[![Latest Version](https://img.shields.io/github/release/envoyproxy/ratelimit.svg)](https://github.com/envoyproxy/ratelimit/releases)
+[![Software License](https://img.shields.io/badge/license-Apache%202.0-blue.svg)](LICENSE)
+[![Average time to resolve an issue](http://isitmaintained.com/badge/resolution/softonic/kube-gcp-disks-roomba.svg)](http://isitmaintained.com/project/envoyproxy/ratelimit "Average time to resolve an issue")
+
+# Overview
 
 With this chart you will be able to deploy the [Rate Limit Service](https://github.com/envoyproxy/ratelimit) in a k8s cluster via helm.
 
