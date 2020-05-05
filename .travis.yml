@@ -10,7 +10,6 @@ install:
 - chmod u+x /tmp/helm
 - "mkdir /var/tmp/${CHART}"
 - "cp -R ./ /var/tmp/${CHART}"
-- "/tmp/helm init --client-only"
 - "/tmp/helm repo add softonic $URL_CHARTMUSEUM"
 - "/tmp/helm repo add softonic-public $PUBLIC_CHARTS_REPOSITORY"
 - "/tmp/helm plugin install https://github.com/chartmuseum/helm-push"
