@@ -58,9 +58,9 @@ httpPort: 8080
 config: |-
   # Start with empty config
 
-redish:
+redis:
   enabled: true
-  fullnameOverride: "redis"
+  fullnameOverride: "redish"
   redisPort: 6379
   persistence:
     enabled: false
