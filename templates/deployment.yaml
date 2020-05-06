@@ -41,8 +41,8 @@ spec:
           - name: USE_STATSD
             value: "false"
           name: {{ .Chart.Name }}
-          image: registry.softonic.io/ratelimit:1.0.1
-          imagePullPolicy: Always
+          image: "{{ .Values.image.repository }}:{{ .Chart.AppVersion }}"
+          imagePullPolicy: "{{ .Values.image.pullPolicy }}"
           ports:
             - name: http-debug 
               containerPort: {{ .Values.debugPort }}
