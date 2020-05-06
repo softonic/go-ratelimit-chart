@@ -28,7 +28,7 @@ spec:
         - env:
           - name: LOG_LEVEL
             value: debug
-{{- if .Values.redis-sharded.enabled }}
+{{- if .Values.redish.enabled }}
           - name: REDIS_SOCKET_TYPE
             value: {{ .Values.redisSocketType }}
           - name: REDIS_URL
