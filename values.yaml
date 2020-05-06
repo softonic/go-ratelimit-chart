@@ -58,7 +58,7 @@ httpPort: 8080
 config: |-
   # Start with empty config
 
-redis:
+redis-sharded:
   enabled: true
   fullnameOverride: "redis"
   redisPort: 6379
