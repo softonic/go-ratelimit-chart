@@ -53,7 +53,7 @@ spec:
 {{- range .Values.virtualHosts }}
           volumeMounts:
           - mountPath: /data/ratelimit/config/config-{{ .name }}.yaml
-            name: config-{{ .name }}.yaml
+            name: config-{{ .name }}
             subPath: config-{{ .name }}.yaml
 {{- end }}
           resources:
@@ -75,5 +75,5 @@ spec:
       - configMap:
           defaultMode: 420
           name: config-{{ .name }}.yaml
-        name: config-{{ .name }}.yaml
+        name: config-{{ .name }}
 {{- end }}
