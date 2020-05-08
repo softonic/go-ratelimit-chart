@@ -1,0 +1,11 @@
+apiVersion: policy/v1beta1
+kind: PodDisruptionBudget
+metadata:
+  name: {{ include "go-ratelimit.fullname" . }}
+  labels:
+    {{- include "go-ratelimit.labels" . | nindent 4 }}
+spec:
+  minAvailable: 1
+  selector:
+    matchLabels:
+{{- include "go-ratelimit.selectorLabels" . | nindent 6 }}

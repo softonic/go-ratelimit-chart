@@ -35,6 +35,10 @@ securityContext: {}
   # runAsNonRoot: true
   # runAsUser: 1000
 
+hpa:
+  minReplicas: 1
+  maxReplicas: 5
+
 resources: {}
 
 nodeSelector: {}
