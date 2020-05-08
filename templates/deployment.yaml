@@ -52,11 +52,10 @@ spec:
               containerPort: {{ .Values.grpcPort }}
             - name: http-server
               containerPort: {{ .Values.httpPort }}
-{{- range .Values.virtualHosts }}
+{{- if .Values.virtualHosts }}
           volumeMounts:
-          - mountPath: /data/ratelimit/config/config-{{ .name }}.yaml
-            name: config-{{ .name }}
-            subPath: config-{{ .name }}.yaml
+          - mountPath: /data/ratelimit/config
+            name: commonconfig-volume
 {{- end }}
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
@@ -72,10 +71,13 @@ spec:
       tolerations:
         {{- toYaml . | nindent 8 }}
     {{- end }}
-{{- range .Values.virtualHosts }}
+{{- if .Values.virtualHosts }}
       volumes:
-      - configMap:
+      - name: commonconfig-volume
+        projected:
           defaultMode: 420
-          name: {{ .name }}
-        name: config-{{ .name }}
+          sources:
+{{- range .Values.virtualHosts }}
+          - configMap:
+              name: {{ .name }}
 {{- end }}
