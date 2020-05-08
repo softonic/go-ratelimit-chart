@@ -1,11 +1,12 @@
+{{- range .Values.virtualHosts }}
+---
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: {{ include "go-ratelimit.fullname" . }}
+  name: {{ .name }}
   labels:
     {{- include "go-ratelimit.labels" . | nindent 4 }}
 data:
-  config.yaml: |-
-{{- if .Values.config }}
-{{ tpl .Values.config . | indent 4 }}
+  config-{{ .name }}.yaml: |
+{{ toYaml .config | indent 2 }}
 {{- end }}
