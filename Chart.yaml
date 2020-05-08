@@ -2,10 +2,10 @@ apiVersion: v2
 name: go-ratelimit
 description: A Ratelimit Service Helm chart for Kubernetes
 type: application
-version: 0.1.6
+version: 0.1.7
 appVersion: 1.4.0
 dependencies:
 - name: "redis-sharded"
   version: 0.1.0
-  alias: "redis"
+  alias: "redish"
   repository: "@softonic-public"
