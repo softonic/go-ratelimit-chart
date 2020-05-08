@@ -50,10 +50,12 @@ spec:
               containerPort: {{ .Values.grpcPort }}
             - name: http-server
               containerPort: {{ .Values.httpPort }}
+{{- range .Values.virtualHosts }}
           volumeMounts:
-          - mountPath: /data/ratelimit/config/config.yaml
+          - mountPath: /data/ratelimit/config/config-{{ .name }}.yaml
             name: ratelimitconfig
-            subPath: config.yaml
+            subPath: config-{{ .name }}.yaml
+{{- end }}
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
       {{- with .Values.nodeSelector }}
@@ -68,8 +70,10 @@ spec:
       tolerations:
         {{- toYaml . | nindent 8 }}
     {{- end }}
+{{- range .Values.virtualHosts }}
       volumes:
       - configMap:
           defaultMode: 420
           name: {{ include "go-ratelimit.fullname" . }}
-        name: ratelimitconfig
+        name: config-{{ .name }}.yaml
+{{- end }}
