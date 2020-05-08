@@ -5,6 +5,6 @@ kind: ConfigMap
 metadata:
   name: {{ .name }}
 data:
-  config-{{ .name }}.yaml: |
-{{ toYaml .config | indent 2 }}
+  config-{{ .name }}.yaml: |-
+{{ toYaml .config | indent 4 }}
 {{- end }}
