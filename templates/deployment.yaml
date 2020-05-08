@@ -53,7 +53,7 @@ spec:
 {{- range .Values.virtualHosts }}
           volumeMounts:
           - mountPath: /data/ratelimit/config/config-{{ .name }}.yaml
-            name: ratelimitconfig
+            name: config-{{ .name }}.yaml
             subPath: config-{{ .name }}.yaml
 {{- end }}
           resources:
@@ -74,6 +74,6 @@ spec:
       volumes:
       - configMap:
           defaultMode: 420
-          name: {{ include "go-ratelimit.fullname" . }}
+          name: config-{{ .name }}.yaml
         name: config-{{ .name }}.yaml
 {{- end }}
