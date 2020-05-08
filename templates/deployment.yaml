@@ -40,6 +40,8 @@ spec:
             value: ratelimit
           - name: USE_STATSD
             value: "false"
+          - name: RUNTIME_IGNOREDOTFILES
+            value: "true"
           name: {{ .Chart.Name }}
           image: "{{ .Values.image.repository }}:{{ .Chart.AppVersion }}"
           imagePullPolicy: "{{ .Values.image.pullPolicy }}"
