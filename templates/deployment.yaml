@@ -74,6 +74,6 @@ spec:
       volumes:
       - configMap:
           defaultMode: 420
-          name: config-{{ .name }}
+          name: {{ .name }}
         name: config-{{ .name }}
 {{- end }}
