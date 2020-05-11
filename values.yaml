@@ -59,6 +59,9 @@ debugPort: 6070
 grpcPort: 8081
 httpPort: 8080
 
+
+logLevel: debug
+
 config: |-
   # Start with empty config
 
