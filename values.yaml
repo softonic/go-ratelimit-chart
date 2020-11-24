@@ -65,6 +65,7 @@ logLevel: debug
 config: |-
   # Start with empty config
 
+
 redish:
   enabled: true
   fullnameOverride: "redish"

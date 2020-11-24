@@ -1,10 +1,7 @@
-{{- range .Values.virtualHosts }}
 ---
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: {{ .name }}
+  name: initconfigmap
 data:
-  config-{{ .name }}.yaml: |-
-{{ toYaml .config | indent 4 }}
-{{- end }}
+  config-initconfigmap.yaml: |-
