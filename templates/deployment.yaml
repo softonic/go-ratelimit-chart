@@ -46,10 +46,10 @@ spec:
           - name: RUNTIME_IGNOREDOTFILES
             value: "true"
           name: {{ .Chart.Name }}
-          image: "{{ .Values.image.repository }}:{{ .Chart.AppVersion }}"
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
           imagePullPolicy: "{{ .Values.image.pullPolicy }}"
           ports:
-            - name: http-debug 
+            - name: http-debug
               containerPort: {{ .Values.debugPort }}
             - name: grpc-server
               containerPort: {{ .Values.grpcPort }}

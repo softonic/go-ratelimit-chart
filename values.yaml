@@ -6,6 +6,8 @@ replicaCount: 1
 
 image:
   repository: envoyproxy/ratelimit
+  # Defaults to chart AppVersion if unspecified
+  tag:
   pullPolicy: IfNotPresent
 
 # imagePullSecrets: []
