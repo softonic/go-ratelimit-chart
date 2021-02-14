@@ -7,6 +7,7 @@ replicaCount: 1
 image:
   repository: envoyproxy/ratelimit
   pullPolicy: IfNotPresent
+  # tag:
 
 # imagePullSecrets: []
 # nameOverride: ""
