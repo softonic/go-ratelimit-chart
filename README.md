@@ -19,6 +19,6 @@ For more insights of envoy rate limit architecture, [Global rate limit Envoy](ht
 # Quick Start
 
 ```bash
-helm repo add softonic https://charts.softonic.io
-helm install redis-sharded softonic/go-ratelimit-chart
+NAME_OF_RELEASE="ratelimiter"
+helm install ${NAME_OF_RELEASE}  softonic/go-ratelimit-chart
 ```
