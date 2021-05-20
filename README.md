@@ -19,6 +19,7 @@ For more insights of envoy rate limit architecture, [Global rate limit Envoy](ht
 # Quick Start
 
 ```bash
+helm dep up
 NAME_OF_RELEASE="ratelimiter"
-helm install ${NAME_OF_RELEASE}  softonic/go-ratelimit-chart
+helm install --repo https://charts.softonic.io ${NAME_OF_RELEASE} go-ratelimit
 ```
