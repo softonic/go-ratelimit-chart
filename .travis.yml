@@ -12,6 +12,7 @@ install:
 - "cp -R ./ /var/tmp/${CHART}"
 - "/tmp/helm repo add softonic $URL_CHARTMUSEUM"
 - "/tmp/helm repo add softonic-public $PUBLIC_CHARTS_REPOSITORY"
+- "/tmp/helm dep up /var/tmp/${CHART}"
 - "/tmp/helm plugin install https://github.com/chartmuseum/helm-push"
 - "/tmp/helm repo list"
 - "/tmp/helm lint /var/tmp/${CHART}"

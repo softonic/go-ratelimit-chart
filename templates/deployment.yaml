@@ -48,7 +48,7 @@ spec:
           - name: RUNTIME_IGNOREDOTFILES
             value: "true"
           name: {{ .Chart.Name }}
-          image: "{{ .Values.image.repository }}:{{ default .Chart.AppVersion .Values.image.tag }}"
+          image: "{{ .Values.image.repository }}:{{ default .Values.image.tag .Chart.AppVersion }}"
           imagePullPolicy: "{{ .Values.image.pullPolicy }}"
           ports:
             - name: http-debug 
