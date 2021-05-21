@@ -9,3 +9,4 @@ dependencies:
   version: 0.3.0
   alias: "redish"
   repository: "https://charts.softonic.io"
+  condition: redish.enabled
