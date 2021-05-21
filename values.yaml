@@ -6,8 +6,8 @@ replicaCount: 1
 
 image:
   repository: softonic/ratelimit
+  tag: 1.5.0
   pullPolicy: IfNotPresent
-    tag: 1.5.0
 
 # imagePullSecrets: []
 # nameOverride: ""
