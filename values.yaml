@@ -60,6 +60,7 @@ debugPort: 6070
 grpcPort: 8081
 httpPort: 8080
 
+extraEnvs: []
 
 logLevel: debug
 

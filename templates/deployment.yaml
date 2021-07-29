@@ -47,6 +47,9 @@ spec:
             value: "false"
           - name: RUNTIME_IGNOREDOTFILES
             value: "true"
+            {{- if .Values.extraEnvs }}
+{{ toYaml .Values.extraEnvs | indent 10 }}
+            {{- end }}
           name: {{ .Chart.Name }}
           image: "{{ .Values.image.repository }}:{{ default .Values.image.tag .Chart.AppVersion }}"
           imagePullPolicy: "{{ .Values.image.pullPolicy }}"
