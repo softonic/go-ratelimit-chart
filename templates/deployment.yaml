@@ -43,8 +43,6 @@ spec:
             value: /data
           - name: RUNTIME_SUBDIRECTORY
             value: ratelimit
-          - name: USE_STATSD
-            value: "false"
           - name: RUNTIME_IGNOREDOTFILES
             value: "true"
             {{- if .Values.extraEnvs }}
