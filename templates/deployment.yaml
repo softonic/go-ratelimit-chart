@@ -51,6 +51,7 @@ spec:
           name: {{ .Chart.Name }}
           image: "{{ .Values.image.repository }}:{{ default .Values.image.tag .Chart.AppVersion }}"
           imagePullPolicy: "{{ .Values.image.pullPolicy }}"
+          command: ["/bin/ratelimit"]
           ports:
             - name: http-debug 
               containerPort: {{ .Values.debugPort }}
