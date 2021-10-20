@@ -5,8 +5,8 @@
 replicaCount: 1
 
 image:
-  repository: softonic/ratelimit
-  tag: 1.5.0
+  repository: envoyproxy/ratelimit
+  tag: v1.4.0
   pullPolicy: IfNotPresent
 
 # imagePullSecrets: []

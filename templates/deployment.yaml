@@ -49,8 +49,9 @@ spec:
 {{ toYaml .Values.extraEnvs | indent 10 }}
             {{- end }}
           name: {{ .Chart.Name }}
-          image: "{{ .Values.image.repository }}:{{ default .Values.image.tag .Chart.AppVersion }}"
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
           imagePullPolicy: "{{ .Values.image.pullPolicy }}"
+          command: ["/bin/ratelimit"]
           ports:
             - name: http-debug 
               containerPort: {{ .Values.debugPort }}
