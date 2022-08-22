@@ -52,7 +52,7 @@ priorityClassName: ""
 
 podDisruptionBudget: {}
 
-redisUrl: "redis"
+redisUrl: "redish-backend"
 redisSocketType: "tcp"
 redisPort: 6379
 
