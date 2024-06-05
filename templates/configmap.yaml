@@ -5,7 +5,4 @@ metadata:
   name: initconfigmap
 data:
   config-initconfigmap.yaml: |-
-    domain: initconfigmap
-    descriptors:
-      - key: generic_key
-        value: global
+{{ .Values.config | indent 4 }}
