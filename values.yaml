@@ -65,7 +65,10 @@ extraEnvs: []
 logLevel: debug
 
 config: |-
-  # Start with empty config
+  domain: initconfigmap
+  descriptors:
+    - key: generic_key
+      value: global
 
 
 redish:
