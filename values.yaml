@@ -62,6 +62,8 @@ httpPort: 8080
 
 extraEnvs: []
 
+containers: []
+
 logLevel: debug
 
 config: |-

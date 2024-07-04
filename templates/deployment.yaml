@@ -64,6 +64,9 @@ spec:
             name: commonconfig-volume
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
+        {{- if .Values.containers }}
+        {{- toYaml .Values.containers | nindent 8 }}
+        {{- end }}
       {{- with .Values.nodeSelector }}
       nodeSelector:
         {{- toYaml . | nindent 8 }}
